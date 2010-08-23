@@ -1,0 +1,30 @@
+#summary A basic introduction on Z routes
+#labels Phase-Implementation,Featured
+
+= Introduction =
+
+Z framework has basic support for 'routes' (example map /admin/index to controller admin and action index)
+
+= Details =
+
+Basic routing (allowing /$controller$/$action$ and /$controller$/
+{{{
+$router = new Z_Router();
+
+$router->addRoute( '/:controller:', array());
+$router->addRoute( '/:controller:/:action:', array());
+
+// Add it to the list of routers
+Z_Application::getInstance()->routers[] = $router;
+}}}
+
+Advanced routing (custom mapping)
+
+{{{
+$router = new Z_Router();
+
+$router->addRoute( '/hello/world', array('controller' => 'index', 'action' => 'helloworld'));
+
+// Add it to the list of routers
+Z_Application::getInstance()->routers[] = $router;
+}}}

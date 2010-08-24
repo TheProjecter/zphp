@@ -1,0 +1,4 @@
+# Make sure to modify this!
+RewriteEngine on
+RewriteBase /zframework_demo
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css)$ index.php

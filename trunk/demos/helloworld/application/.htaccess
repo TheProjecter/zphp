@@ -1,0 +1,4 @@
+# Deny access to all visitors! (Important or you would leak your configuration!)
+# Only works on Apache (tested on Apache 2.0+)
+
+deny from all

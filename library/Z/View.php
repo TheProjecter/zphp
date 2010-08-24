@@ -26,6 +26,8 @@ class Z_View
 		
 		if (!$this->_config->buffer_response)
 		{
+			$this->_response->output(); // flushes output buffer and sends headers!
+			
 			include $this->_config->template_dir . Z_DS . $template . '.tpl.php';	
 			
 			return $this->_request;

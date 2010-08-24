@@ -11,6 +11,7 @@ class Z_View_Smarty extends Z_View
 		= array('template_dir' => 'The path to the folder containing the views (templates)',
 				'compile_dir' => 'Usually a folder within the runtime folder',
 				'cache_dir' => 'Usually a folder within the runtime folder',
+				'buffer_output' => 'If true, it will buffer the output'
 		);
 	
 	public static function getOptionsInfo()
@@ -23,7 +24,13 @@ class Z_View_Smarty extends Z_View
 		parent::__construct($viewData);		
 		
 		// Get class-specific options
-		$config = Z::getConfig(__CLASS__);
+		$this->_config = Z::getConfig(__CLASS__);
+		$config = $this->_config;
+		
+		if (!isset($this->_config->buffer_response))
+		{
+			$this->_config->buffer_response = true;
+		}
 				
 		$this->_smarty = new Z_View_Smarty_Extended();
 		$this->_smarty->plugins_dir[] =  realpath(dirname(__FILE__). Z_DS . 'Smarty' . Z_DS . 'Plugins' . Z_DS);
@@ -44,7 +51,16 @@ class Z_View_Smarty extends Z_View
 	
 	public function output($template)
 	{
-		$template .= '.tpl';
+		$template .= '.tpl';		
+			
+		if (!$this->_config->buffer_response)
+		{
+			$this->_response->output(); // flushes output buffer and sends headers!
+			
+			$this->_smarty->display($template);
+			
+			return $this->_request;
+		}
 		
 		$this->_response->write($this->_smarty->fetch($template));
 		

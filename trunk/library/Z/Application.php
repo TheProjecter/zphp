@@ -58,6 +58,9 @@ class Z_Application
 		}
 	}	
 */
+	/**
+	 * @return Z_Application
+	 */
 	public static function getInstance()
 	{
 		if (Z::getGlobal('@Z.Application'))

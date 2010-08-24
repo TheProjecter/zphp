@@ -13,4 +13,4 @@ $router->addRoute( '/:controller:', array());
 $router->addRoute( '/:controller:/:action:', array());
 $router->addRoute( '/:module:/:controller:/:action:', array());
 
-$application->routers[] = $router;
+$application->addRouter( $router );

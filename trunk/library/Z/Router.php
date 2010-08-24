@@ -1,9 +1,7 @@
 <?php
 
-
 class Z_Router
-{
-	
+{	
 	protected $_routes = array();
 	
 	public function __construct($routes = array())

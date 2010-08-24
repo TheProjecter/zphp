@@ -1,0 +1,9 @@
+this file is originally named test.txt and is located in the protected application/views folder!
+
+The smarty code used to auto-publish this asset is:
+
+<pre>
+<a href="{publish this="test.txt"}">view asset</a>
+</pre>
+
+Notice that the url to this file does not include the original filename or path!

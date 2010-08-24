@@ -30,9 +30,9 @@ require_once '../../library/Z/Z.php';
 $application = Z::createApplication('application/config.inc.php');
 
 /** 
- * Load our 'routing table' configuration
+ * Load our 'routing table' configuration and other misc options
  */
-require_once 'application/routing.inc.php';
+require_once 'application/misc.inc.php';
 
 /**
  * Run it (Error handling not yet correctly done :/)

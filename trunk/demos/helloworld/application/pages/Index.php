@@ -9,13 +9,25 @@ class Z_Page_Index extends Z_Page
 	
 	public function indexAction()
 	{		
-		$this->view = new Z_View();			
+		$this->view = new Z_View();		
+			
 		$this->view->output('index')->handled();
 	}
 	public function smartytestAction()
 	{
 		$this->view = new Z_View_Smarty();	
 				
-		$this->view->output('test')->handled();
+		$this->view->output('test')->handled();		
+	}
+	
+	public function jsonAction()
+	{
+		$data = array();
+		$data[]['name'] = 'Tim';
+		
+		return new Z_Response_Writer_JSON($data);
+		//$this->response->write(new Z_Response_Writer_JSON($data));	
+			
+		//$this->request->handled();		
 	}
 }

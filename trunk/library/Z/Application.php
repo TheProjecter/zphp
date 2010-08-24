@@ -160,7 +160,15 @@ class Z_Application
 				}
 				
 				if (!$this->request->isHandled())
-					$obj->$actionMethod();
+				{
+					$result = $obj->$actionMethod();
+					
+					if (isset($result) && ($result instanceof Z_Response_Writer))
+					{
+						$this->response->write($result);
+						$this->request->handled();
+					}
+				}
 			}
 		}
 		

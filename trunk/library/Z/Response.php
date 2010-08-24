@@ -62,6 +62,11 @@ class Z_Response
 	
 	public function write($data)
 	{
+		if ($data instanceof Z_Response_Writer)
+		{
+			$data = $data->processData();
+		}
+		
 		$this->_output .= $data;
 		
 		return $this;
@@ -86,6 +91,7 @@ class Z_Response
 	
 	public function output()
 	{
+		
 		foreach ($this->_headers as $header)
 		{
 			@header($header);	
@@ -97,7 +103,6 @@ class Z_Response
 			
 			return $this->_request;	
 		}
-		
 		echo $this->_output;	
 		
 		return $this->_request;	

@@ -25,9 +25,6 @@ class Z_Page_Index extends Z_Page
 		$data = array();
 		$data[]['name'] = 'Tim';
 		
-		return new Z_Response_Writer_JSON($data);
-		//$this->response->write(new Z_Response_Writer_JSON($data));	
-			
-		//$this->request->handled();		
+		return new Z_Response_Writer_JSON($data);		
 	}
 }

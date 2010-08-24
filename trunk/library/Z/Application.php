@@ -165,7 +165,7 @@ class Z_Application
 					
 					if (isset($result) && ($result instanceof Z_Response_Writer))
 					{
-						$this->response->write($result);
+						$this->response->write($result->processData());
 						$this->request->handled();
 					}
 				}

@@ -27,7 +27,7 @@ class Z
 		/**
 		 * Include the ezComponents bootstrap (for database, ...)
 		 */
-		require_once 'ezComponents/Base/src/ezc_bootstrap.php';				
+		require_once 'ezcomponents/Base/src/ezc_bootstrap.php';				
 
 		/**
 		 * Register our own autoloader

@@ -5,8 +5,10 @@ class Z_View_Smarty_Extended extends Smarty
 	
 	public function __construct()
 	{
+		$this->error_reporting = E_ALL;		
 		parent::__construct();
 		$this->error_reporting = E_ALL;
+		
 		
 		$this->register_compiler_function('publish', array($this, 'compiler_publishAsset'));
 	}
@@ -63,12 +65,17 @@ class Z_View_Smarty_Extended extends Smarty
 	
 	   $dir = str_replace("'", "\\'", $dir); 
 	  
-	 //  Z_Asset::getInstance()->publish($_params['this'], null, 0, $dir, $_params['assets']);
-	    
-	   return "echo Z_Asset::getInstance()->publish({$_params['this']}, null, {$_params['ttl']}, <<<'EOT'
+	    if (version_compare(phpversion(), "5.3.0", "<"))	
+	   		return "echo Z_Asset::getInstance()->publish({$_params['this']}, null, {$_params['ttl']}, <<<EOT
 {$dir}\
 EOT
 , {$_params['assets']} );";
+		else
+		{return "echo Z_Asset::getInstance()->publish({$_params['this']}, null, {$_params['ttl']}, <<<'EOT'
+{$dir}\
+EOT
+, {$_params['assets']} );";			
+		}
 	}
 	
 	function getCurrentFile()

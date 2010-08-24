@@ -21,7 +21,43 @@ class Z_Response
 	
 	public function header($header)
 	{
-		$this->_headers[] = $header;	
+		if (strpos($header, ':') === false)
+			$this->_headers[] = $header;	
+		else
+		{
+			$headerSection = explode(':', $header, 2); $headerSection = $headerSection[0];
+				
+			foreach ($this->_headers as $key => $value) 
+			{
+				if (strpos($value, ':') === false)
+					continue;
+					
+				$section = explode(':', $value, 2); $section = $section[0];
+				
+				if ($section == $headerSection)
+				{
+					$this->_headers[$key] = $header;
+					
+					continue; /* @todo break? */
+				}				
+			}
+		}
+	}
+	
+	/**
+	 * Sets required JSON header(s)
+	 * 
+	 * @param $forceNoCache If true it will also set required headers to disable caching
+	 */
+	public function forceJSON($forceNoCache = true)
+	{
+		if ($forceNoCache)
+		{
+			$this->header('Cache-Control: no-cache, must-revalidate');
+			$this->header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		}
+		
+		$this->header('Content-type: application/json');
 	}
 	
 	public function write($data)

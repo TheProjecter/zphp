@@ -85,7 +85,7 @@ class Z_Application
 		else
 		{			
 			$class .= $controller;
-			$path .= Z_DS . $controller;
+			$path .= Z_DS . ucfirst( $controller );
 		}
 		
 		$path .= '.php';
@@ -246,7 +246,7 @@ class Z_Application
 		return $calls;
 	}
 	
-	public function getWebRoot()
+	public function getWebRoot($add = '')
 	{
 		$sn = $_SERVER['SCRIPT_NAME'];
 		
@@ -254,7 +254,7 @@ class Z_Application
 		array_pop($parts);
 		$sn = implode('/', $parts);
 		
-		return $sn;
+		return $sn . $add;
 	}
 	
 	public function generateUrl($action = 'index', $controller = 'index', $module = 'default', $data = array())

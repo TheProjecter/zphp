@@ -9,6 +9,12 @@
  */
 
 /**
+ * Dev only obviously
+ */
+@error_reporting(E_ALL);
+@ini_set('display_errors', 'on');
+
+/**
  * Some application-specific defines
  */
 define('DEMO_LIBRARY', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'library'));
@@ -43,5 +49,7 @@ try
 }
 catch(Exception $ex)
 {
-	print_r($ex->getTrace());
+	ob_end_clean();
+	echo "An exception occured: " . $ex->getMessage() . "\r\nFile: " . $ex->getFile() . "\r\nLine: " . $ex->getLine() . "\r\nStacktrace: \r\n\r\n";
+	echo $ex->getTraceAsString();
 }

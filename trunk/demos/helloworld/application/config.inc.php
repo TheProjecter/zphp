@@ -10,7 +10,7 @@
  * Example 'Application' in Z_Application, ...
  */
 
-define('DEMO_APPLICATION', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'application'));
+define('DEMO_APPLICATION', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR ));
 
 // We'll show 'both' as an example
 $config = array();

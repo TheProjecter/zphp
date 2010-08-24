@@ -56,6 +56,7 @@ class Z_Asset
 			
 		if ($filename == null)
 			throw new Z_Asset_Exception();
+			
 		// First construct the path		
 		$filepath = realpath($sourcePath . $filename);
 		
@@ -125,7 +126,7 @@ class Z_Asset
 		}
 		
 		// then copy the file
-		$ok = @copy($filepath, $targetpath) && @touch($targetpath, filemtime($filepath));
+		$ok = copy($filepath, $targetpath) && touch($targetpath, filemtime($filepath));
 				
 		if (!$ok)
 			throw new Z_Asset_Exception();

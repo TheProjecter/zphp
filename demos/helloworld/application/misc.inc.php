@@ -14,3 +14,9 @@ $router->addRoute( '/:controller:/:action:', array());
 $router->addRoute( '/:module:/:controller:/:action:', array());
 
 $application->addRouter( $router );
+
+/**
+ * Configure Z_Asset (for usage of the publish smarty plugin)
+ */
+Z_Asset::getInstance(realpath(dirname(__FILE__) . '/../assets/') . Z_DS, realpath(dirname(__FILE__) . '/views/') . Z_DS, Z_Asset::$BIT_CHECK_DATETIME | Z_Asset::$BIT_CHECK_SIZE, 0755, $application->getWebRoot('/assets/') );
+

@@ -34,7 +34,9 @@ $application = Z::createApplication('application/config.inc.php');
  */
 require_once 'application/routing.inc.php';
 
-// Run it
+/**
+ * Run it (Error handling not yet correctly done :/)
+ */
 try
 {
 	$application->run();

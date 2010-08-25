@@ -51,6 +51,7 @@ class Z_View_Smarty extends Z_View
 	
 	public function output($template)
 	{
+		$extensionLess = $template;
 		$template .= '.tpl';		
 			
 		if (!$this->_config->buffer_response)
@@ -62,7 +63,7 @@ class Z_View_Smarty extends Z_View
 			return $this->_request;
 		}
 		
-		$this->_response->write($this->_smarty->fetch($template));
+		$this->_response->write($this->getOutput($extensionLess));
 		
 		return $this->_request;
 	}

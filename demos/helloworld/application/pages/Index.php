@@ -15,9 +15,7 @@ class Z_Page_Index extends Z_Page
 	}
 	public function smartytestAction()
 	{
-		$this->view = new Z_View_Smarty();
-						
-		$this->view->output('test')->handled();		
+		return new Z_Response_Writer_Smarty('test');		
 	}
 	
 	public function jsonAction()
